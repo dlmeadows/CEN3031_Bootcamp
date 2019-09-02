@@ -9,7 +9,6 @@ let listingData, server;
 let requestHandler = function (request, response) {
     let parsedUrl = url.parse(request.url);
 
-
     /*
       The request handler should send listingData in the JSON format as a response if a GET request
       is sent to the '/listings' path.
@@ -45,7 +44,10 @@ fs.readFile('listings.json', 'utf8', function (err, data) {
     }
 
     //Creates the server and starts it.
-    server = http.createServer(requestHandler).listen(port);
+    server = http.createServer(requestHandler);
+    server.listen(8080, () => {
+        console.log(`server listening on: http://localhost:${port}`);
+    });
 });
 
 
